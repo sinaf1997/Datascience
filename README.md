@@ -1,49 +1,90 @@
-# Statistical Engine & Simulation
+# Statistical Engineering & Simulation Project
 
-## Project Overview
-This project implements a pure-Python statistical engine and a Monte Carlo simulation to demonstrate statistical concepts and the Law of Large Numbers (LLN). The statistical engine processes raw numerical data, while the simulation models server failure probabilities.
+##  Project Overview
+This project implements a statistical engine from scratch using pure Python (without external libraries like NumPy or Pandas). It processes raw numerical data and computes key statistical measures such as mean, median, mode, variance, standard deviation, and outliers.
 
-## Features
-### Core Statistical Engine
-- **Central Tendency**: Mean, Median, Mode (handles multimodal distributions).
-- **Dispersion**: Variance (Population and Sample), Standard Deviation.
-- **Outlier Detection**: Identifies data points beyond a threshold of standard deviations.
-- **Robust Error Handling**: Handles empty arrays and mixed data types gracefully.
+Additionally, the project includes a Monte Carlo simulation to demonstrate the Law of Large Numbers (LLN) by simulating a server failure scenario with a fixed probability.
 
-### Monte Carlo Simulation
-- Simulates server crashes with a 4.5% daily failure probability.
-- Demonstrates the Law of Large Numbers by running simulations over different time periods.
 
-## Mathematical Logic
-- **Variance**: 
-  \[ \sigma^2 = \frac{\sum (x_i - \mu)^2}{N} \] (Population)
-  \[ s^2 = \frac{\sum (x_i - \mu)^2}{N-1} \] (Sample)
-- **Median**: For even-length data, the median is the average of the two middle values.
 
-## Setup Instructions
-1. Clone the repository:
-   ```bash
-   git clone <repository_url>
-   cd statistical_engine
-   ```
-2. Run the main script:
-   ```bash
-   python main.py
-   ```
+##  Mathematical Logic
 
-## Testing
-Run the unit tests using:
+### Mean
+Mean = (Σx) / n
+
+Where:
+- Σx = sum of all data points  
+- n = number of data points  
+
+
+
+### Median (Even vs Odd)
+
+- If the number of values is **odd**:
+  Median = middle value after sorting  
+
+- If the number of values is **even**:
+  Median = (x₁ + x₂) / 2  
+  (average of the two middle values)
+
+
+
+### Mode
+
+- The mode is the most frequent value(s)
+- If multiple values have the same highest frequency → multimodal
+- If all values appear once → no mode
+
+
+
+### Variance
+
+- Population Variance:
+  Var = Σ(x - μ)² / n
+
+- Sample Variance (Bessel’s Correction):
+  Var = Σ(x - μ)² / (n - 1)
+
+Where:
+- x = data value  
+- μ = mean  
+- n = number of data points  
+
+
+### Standard Deviation
+
+Standard Deviation = √Variance
+
+It measures how far values are from the mean.
+
+
+
+### Outlier Detection (Z-Score Method)
+
+Z = (x - μ) / σ
+
+A value is considered an outlier if:
+
+|Z| > threshold (default = 2)
+
+
+### Law of Large Numbers (LLN)
+
+As the number of trials increases, the experimental probability approaches the true probability.
+
+In this project:
+- True crash probability = 0.045  
+- Larger simulations produce more accurate results  
+
+
+
+##  Setup Instructions
+
+### 1. Clone the Repository
+
 ```bash
-python -m unittest discover tests
-```
+git clone https://github.com/your-username/statistical_engine.git
+cd statistical_engine
+Run the Project using: python main.py
+Run all tests using: python -m unittest discover tests
 
-## Acceptance Criteria Checklist
-- [x] Passes empty list handling.
-- [x] Accurately calculates sample variance vs population variance.
-- [x] Handles multimodal distributions in `get_mode`.
-- [x] Simulates server crashes and calculates probabilities.
-- [x] Fully documented and tested.
-
----
-
-Developed as part of the Statistical Engineering & Simulation Assessment.
